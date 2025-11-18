@@ -1,0 +1,4 @@
+# file: /home/jacob/ls/envs/omega-env/bin/pytest
+# hypothesis_version: 6.146.0
+
+['.exe', '__main__']

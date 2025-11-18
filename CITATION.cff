@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "See"
+  given-names: "Jacob"
+  email: "Jake.s.dev1991@gmail.com"
+title: "OmegaProtocol V2.6.5"
+version: 2.6.5
+date-released: 2025-11-17
+abstract: "Python implementation of the Omega Protocol optimizing for Informational Coherence."
+

@@ -1,0 +1,18 @@
+numpy==1.24.3
+scipy==1.11.4
+pandas==2.2.2
+joblib==1.2.0
+pydantic==2.8.2
+# CPU-only PyTorch (user should choose correct index for their platform)
+torch==2.4.0
+scikit-learn==1.5.0
+optuna==3.6.1
+matplotlib==3.9.0
+networkx==3.3
+jax[cpu]==0.4.30
+ray[default]==2.10.0
+dask[distributed]==2024.8.0
+pyspark==3.5.1
+pytest==8.3.2
+qnm==0.4.4
+qutip==4.7.3

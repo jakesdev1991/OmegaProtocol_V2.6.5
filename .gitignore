@@ -1,0 +1,22 @@
+cat <<EOF > .gitignore
+# Python
+__pycache__/
+*.pyc
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Local venv
+venv/
+
+# Project dump/unpacker files
+project_dump.md
+build_from_dump.py
+path/
+
+# Scrutiny logs (optional, but good to ignore)
+*.json.gz
+EOF
+venv/

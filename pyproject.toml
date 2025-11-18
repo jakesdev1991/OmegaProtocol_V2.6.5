@@ -1,0 +1,99 @@
+#
+# This file REPLACES 'pyproject.toml'
+# It adds *all* rule markers to [tool.pytest.ini_options].markers
+#
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omega-protocol"
+version = "2.6.5"
+description = "Omega Protocol v2.6.5 computational framework"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Project Omega Staff", email = "admin@omega.dev" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+# Core dependencies from requirements.txt
+dependencies = [
+    "numpy==1.24.3",
+    "scipy==1.11.4",
+    "pandas==2.2.2",
+    "joblib==1.4.2",
+    "pydantic==2.8.2",
+    "cupy-cuda12x==13.0.0",
+    "torch==2.4.0",
+    "scikit-learn==1.5.0",
+    "optuna==3.6.1",
+    "matplotlib==3.9.0",
+    "networkx==3.3",
+    "jax[cpu]",
+    "qnm",
+    "qutip",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "ray[default]",
+    "dask[distributed]",
+    "pyspark",
+    "mkdocs-material",
+    # v1.3 Additions
+    "hypothesis",
+    "cyclonedx-bom" 
+]
+
+[project.scripts]
+omega = "omega.cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/omega-protocol/omega"
+"Bug Reports" = "https://github.com/omega-protocol/omega/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["omega*"]
+exclude = ["scrutiny-v1.2", "meta-scrutiny-v1.2", "scrutiny-v1.3", "meta-scrutiny-v1.3", "docs", "examples"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "scrutiny-v1.3",
+    "meta-scrutiny-v1.3"
+]
+# Register ALL markers to remove warnings
+markers = [
+    # Meta-Scrutiny
+    "mi_2: (MI-2) Test for executable alignment",
+    "mi_3: (MI-3) Test for orphan tests",
+    "mi_4: (MI-4) Test for PBT enforcement",
+    "mi_5: (MI-5) Test for artifact section check",
+    # Coherence Validation
+    "cv_1: (CV-1) Test for entropy integrity",
+    "cv_2: (CV-2) Test for local normalization",
+    "cv_3: (CV-3) Test for cache signature",
+    "cv_4: (CV-4) Test for threshold governance",
+    "cv_5: (CV-5) PBT for gravitational waveform",
+    # Protocol Invariance
+    "pi_1: (PI-1) Test for functional idempotence",
+    "pi_2: (PI-2) Test for CRI-ΔS decoupling",
+    "pi_4: (PI-4) Test for ledger store fix",
+    # Scaling & Degradation
+    "sd_1: (SD-1) Test for sparse skip fallback",
+    "sd_2: (SD-2) Test for scale documentation",
+    "sd_3: (SD-3) Test for cache stability",
+    "sd_4: (SD-4) Test for evaluation budget",
+    "sd_5: (SD-5) Test for hardware auto-select",
+    # Artifact & Metrology
+    "am_2: (AM-2) Test for SBOM generation",
+]

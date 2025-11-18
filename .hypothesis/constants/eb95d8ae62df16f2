@@ -1,0 +1,4 @@
+# file: /home/jacob/OmegaProtocol_V2.6.5/omega/physics/gravitational.py
+# hypothesis_version: 6.146.0
+
+[1e-09, 0.01, 3.0, 5.0, 8.0, 100]
