@@ -1,0 +1,152 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- UNIVERSAL PREAMBLE BLOCK ---
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\setlist[itemize]{label=-}
+
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{axiom}{Axiom}
+
+\title{The Holographic COD Framework (Upgrade)\\
+From Derived Geometry to Binary-Encoded Effective Physics}
+\author{Omega Protocol Formalization: Upgrade Pass}
+\date{April 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We extend the Holographic COD Framework with three upgrade layers: (i) explicit derivations to ordinary low-energy physics (continuity, wave, and diffusion forms), (ii) a binary coding map that projects observables to $(0,1)$ symbolic streams for implementation-level realism, and (iii) a constrained probabilistic route toward Goldbach-style statistics via extreme hidden Markov tails. The final layer is stated as a research program, not a proof of Goldbach's conjecture.
+\end{abstract}
+
+\section{Hierarchy of Primitives (Retained)}
+\begin{enumerate}
+    \item \textbf{Level 1 (The Net):} Factorization algebra $\mathcal{F}$ over $\mathbf{Loc}$.
+    \item \textbf{Level 2 (The State):} Hadamard state functor $\omega$.
+    \item \textbf{Level 3 (Derived Distributions):} Wightman distributions and relative entropy.
+    \item \textbf{Level 4 (Geometry Objects):} COD metric $g$ and RCOD current $\sigma$.
+    \item \textbf{Level 5 (Dynamics):} Entanglement wedge and RG cocycle.
+    \item \textbf{Level 6 (Effective Reality):} Normal-physics PDE sector plus binary encoder.
+\end{enumerate}
+
+\section{Derivation Layer: From COD to Normal Physics}
+
+\begin{definition}[Linear Response Potential]
+For a one-parameter perturbation $\omega_\epsilon$, define the response potential
+\begin{equation}
+\Phi_U(x) := \left.\frac{\delta}{\delta \epsilon}\, S(\omega_\epsilon\|\omega)_U\right|_{\epsilon=0}.
+\end{equation}
+Under local equilibrium and finite correlation length, $\Phi_U$ is smooth at mesoscopic scale.
+\end{definition}
+
+\begin{proposition}[Continuity Form]
+If RCOD is interpreted as an informational current density $J^\mu$, then conservation of total relative information implies
+\begin{equation}
+\partial_t \rho + \nabla\cdot J = 0,
+\end{equation}
+with $\rho := \delta^2 S/\delta\epsilon^2$ as a local information density.
+\end{proposition}
+
+\begin{proposition}[Diffusion Limit]
+Assume constitutive closure $J = -D\nabla\rho$ with $D>0$. Then
+\begin{equation}
+\partial_t \rho = D\,\Delta\rho,
+\end{equation}
+recovering the standard diffusion equation from COD transport.
+\end{proposition}
+
+\begin{proposition}[Wave Limit]
+If the modular response is inertial, $\partial_t J + c^2\nabla\rho = 0$, then
+\begin{equation}
+\partial_t^2\rho - c^2\Delta\rho = 0,
+\end{equation}
+which is the normal wave equation.
+\end{proposition}
+
+\section{Binary Realization: $(0,1)$ Projection to Computable Reality}
+
+\begin{definition}[Binary Observable Encoder]
+Let $X_U$ be a real observable. For threshold $\theta$ and scale $\tau$ define
+\begin{equation}
+B_U(t)=\mathbf{1}\{X_U(t)\ge\theta\}\in\{0,1\}.
+\end{equation}
+Equivalently, a stochastic soft encoder uses
+\begin{equation}
+\mathbb{P}(B_U=1\mid X_U)=\sigma\!\left(\frac{X_U-\theta}{\tau}\right),
+\end{equation}
+where $\sigma(z)=(1+e^{-z})^{-1}$.
+\end{definition}
+
+\begin{remark}
+This map sends derived observables to machine-level symbolic streams while preserving coarse transport statistics via calibration constraints on empirical moments.
+\end{remark}
+
+\section{Goldbach Channel via Extreme Hidden Markov Tails}
+
+\begin{definition}[Prime-Pair Emission Process]
+For even $2n$, define indicator
+\begin{equation}
+Y_n = \mathbf{1}\{\exists\ p,q\ \text{prime}:\ p+q=2n\}.
+\end{equation}
+Model $(Y_n)$ as emissions of a hidden Markov process with latent states controlling local prime-density regimes.
+\end{definition}
+
+\begin{definition}[Extreme Tail Risk Functional]
+For block length $N$, define failure count
+\begin{equation}
+F_N := \sum_{n\le N}(1-Y_n).
+\end{equation}
+The extreme-tail objective is to control
+\begin{equation}
+\mathbb{P}(F_N\ge k)
+\end{equation}
+for fixed $k$ as $N\to\infty$ under calibrated hidden-state transitions.
+\end{definition}
+
+\begin{proposition}[Programmatic Bridge]
+If one can prove a super-exponential tail bound
+\begin{equation}
+\mathbb{P}(F_N\ge 1) \le C\exp(-N^\alpha),\quad \alpha>0,
+\end{equation}
+uniformly for all sufficiently large $N$, then only finitely many even integers can violate Goldbach within this model class.
+\end{proposition}
+
+\begin{remark}[Scope]
+The previous proposition is not a proof of Goldbach's conjecture. It defines a mathematically explicit probabilistic target linking COD-style transport formalism, binary process realizations, and extreme hidden-tail control.
+\end{remark}
+
+\section{Conclusion}
+Upgrade status:
+\begin{enumerate}
+    \item COD/RCOD primitives now derive standard continuity, diffusion, and wave equations in an effective limit.
+    \item A binary $(0,1)$ encoder provides implementation-grade symbolic observables.
+    \item A precise extreme-tail hidden-Markov program is introduced as a route to Goldbach statistics, with explicit non-proof disclaimer.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{Costello} Costello, K., \& Gwilliam, O. (2017). \textit{Factorization Algebras in Quantum Field Theory}. Cambridge University Press.
+\bibitem{Jafferis} Jafferis, D. L., et al. (2016). Relative entropy equals bulk relative entropy. \textit{Journal of High Energy Physics}, 2016(6), 4.
+\bibitem{Tao} Tao, T. (2014). Every odd number greater than 1 is the sum of at most five primes. \textit{Mathematics of Computation}, 83(286), 997--1038.
+\bibitem{LargeDev} Dembo, A., \& Zeitouni, O. (1998). \textit{Large Deviations Techniques and Applications}. Springer.
+\end{thebibliography}
+
+\end{document}
