@@ -1,39 +1,60 @@
 # Omega Protocol v2.6.5
 
-Omega Protocol now includes an explicit **semiclassical RCOD toy model** matching the
-paper in `docs/quantum_vacuum_engineering.tex`.
+Meta-Scrutiny and Scrutiny Protocol Implementation for AI reasoning systems. Provides structured frameworks for multi-agent scrutiny, meta-reasoning, and collaborative problem-solving.
 
-## What's included
+## Overview
 
-- AQFT-inspired RCOD flux operator utilities in `omega/physics/rcod.py`.
-- 1-loop derivative-coupling momentum-space helpers (`one_loop_vertex_factor`).
-- Semiclassical negative-energy pulse helpers with QEI lower-bound accounting.
-- Legacy optimizer + scrutiny suites.
+The Omega Protocol implements a hierarchical reasoning architecture:
 
-## Quick start (CPU)
+- **Scrutiny Protocol v1.3**: Base layer for structured reasoning and critique
+- **Meta-Scrutiny Protocol v1.3**: Higher-order reasoning about reasoning processes
+- **PINN/TOE Workers**: Physics-informed neural network and Theory of Everything workers
 
-1. `python3 -m venv venv`
-2. `source venv/bin/activate`
-3. `pip install -e .[dev]`
-4. `pytest scrutiny-v1.3 meta-scrutiny-v1.3 -q`
+## Components
 
-## RCOD mini example
-
-```python
-import numpy as np
-from omega.physics.rcod import (
-    QEIBound,
-    induced_energy_density_from_pulse,
-    qei_saturation_ratio,
-    sampled_negative_energy,
-)
-
-t = np.linspace(-2.0, 2.0, 2001)
-dt = t[1] - t[0]
-tau0 = 0.25
-B = np.exp(-(t**2) / (2*tau0**2))
-rho = induced_energy_density_from_pulse(B, dt, coupling=1.0)
-neg = sampled_negative_energy(t, rho, tau0=tau0)
-ratio = qei_saturation_ratio(neg, QEIBound(C=1.0, tau0=tau0))
-print("QEI saturation ratio:", ratio)
 ```
+OmegaProtocol_V2.6.5/
+├── scrutiny-v1.3/          # Scrutiny protocol implementation
+├── meta-scrutiny-v1.3/     # Meta-scrutiny protocol implementation
+├── omega/                  # Core Omega protocol modules
+├── docs/                   # Documentation
+├── examples/               # Usage examples
+├── pinn_worker.py          # Physics-informed neural network worker
+├── toe_worker.py           # Theory of Everything worker
+└── build.sh                # Build script
+```
+
+## Quick Start
+
+```bash
+# Install dependencies
+pip install -e .[dev]
+
+# Run build
+./build.sh
+
+# Run tests
+pytest -v
+```
+
+## Configuration
+
+See `.env.example` for required environment variables.
+
+## Development
+
+```bash
+# Install dev dependencies
+pip install -e .[dev]
+
+# Lint
+ruff check .
+mypy .
+
+# Test
+pytest -v
+```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
