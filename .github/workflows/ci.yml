@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * 0'
+
+jobs:
+  python-checks:
+    name: Python Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -U pip
+          pip install ruff mypy pytest pytest-asyncio hypothesis
+          pip install -r requirements.txt
+          pip install -r requirements-cpu.txt
+      
+      - name: Ruff lint
+        run: ruff check . --exclude=.hypothesis,meta-scrutiny-v1.2_old,scrutiny-v1.2_old
+      
+      - name: Ruff format check
+        run: ruff format --check . --exclude=.hypothesis,meta-scrutiny-v1.2_old,scrutiny-v1.2_old
+      
+      - name: MyPy type check
+        run: mypy . --ignore-missing-imports --exclude=.hypothesis,meta-scrutiny-v1.2_old,scrutiny-v1.2_old
+      
+      - name: Python tests
+        run: pytest -v --tb=short
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+      
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+      
+      - name: Check for secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: .
+          base: main
+          head: HEAD
+
+  build-script:
+    name: Build Script Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Test build.sh
+        run: |
+          chmod +x build.sh
+          ./build.sh --help || true
+
+  docs:
+    name: Documentation Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for README
+        run: test -f README.md
+      
+      - name: Validate markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
