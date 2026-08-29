@@ -1,7 +1,7 @@
 numpy==1.24.3
 scipy==1.11.4
 pandas==2.2.2
-joblib==1.2.0
+joblib==1.5.3
 pydantic==2.8.2
 # CPU-only PyTorch (user should choose correct index for their platform)
 torch==2.4.0
