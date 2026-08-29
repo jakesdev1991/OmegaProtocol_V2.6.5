@@ -13,7 +13,7 @@ jax[cuda12_pip]==0.4.30
 cupy-cuda12x==13.0.0
 ray[default]==2.10.0
 dask[distributed]==2024.8.0
-pyspark==3.5.1
+pyspark==4.2.0
 pytest==8.3.2
 qnm==4.0.0
 qutip==4.7.3
