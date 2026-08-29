@@ -13,6 +13,6 @@ jax[cpu]==0.4.30
 ray[default]==2.10.0
 dask[distributed]==2024.8.0
 pyspark==3.5.1
-pytest==8.3.2
+pytest==9.1.1
 qnm==0.4.4
 qutip==4.7.3
