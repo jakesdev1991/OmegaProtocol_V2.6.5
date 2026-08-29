@@ -10,7 +10,7 @@ optuna==3.6.1
 matplotlib==3.9.0
 networkx==3.3
 jax[cuda12_pip]==0.4.30
-cupy-cuda12x==13.0.0
+cupy-cuda12x==14.1.1
 ray[default]==2.10.0
 dask[distributed]==2024.8.0
 pyspark==3.5.1
